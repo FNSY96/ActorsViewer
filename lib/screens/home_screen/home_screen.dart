@@ -2,7 +2,7 @@ import 'package:actors_viewer/screens/actors_viewing_controller.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import 'actors_listing_widget.dart';
+import 'popular_actors_listing_widget.dart';
 
 class HomeScreen extends StatelessWidget {
 
@@ -13,7 +13,7 @@ class HomeScreen extends StatelessWidget {
         backgroundColor: Colors.cyan,
         elevation: 0,
       ),
-      body: ActorsListingWidget(),
+      body: PopularActorsListingWidget(),
     );
   }
 }
