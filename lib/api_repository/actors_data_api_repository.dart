@@ -1,5 +1,6 @@
 import 'package:actors_viewer/api_requests_classes/actor_details.dart';
 import 'package:actors_viewer/connectivity/custom_http.dart';
+import 'package:actors_viewer/constants/api_constants.dart';
 
 class ActorsDataApiRepository {
 

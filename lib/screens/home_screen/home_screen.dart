@@ -1,4 +1,4 @@
-import 'package:actors_viewer/screens/ActorsViewingController.dart';
+import 'package:actors_viewer/screens/actors_viewing_controller.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 

@@ -30,6 +30,7 @@ dependencies:
   infinite_scroll_pagination: ^3.0.1+1
   http: ^0.13.3
   bloc: ^7.0.0
+  rxdart: ^0.27.1
 
 dev_dependencies:
   flutter_test:
