@@ -1,38 +1,37 @@
 import 'dart:io';
 
+import 'package:actors_viewer/provider/popular_actors_data_provider.dart';
+import 'package:actors_viewer/screens/actor_details/actor_details_screen.dart';
 import 'package:actors_viewer/screens/home_screen/home_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:scoped_model/scoped_model.dart';
+import 'package:provider/provider.dart';
 
-import 'app_model.dart';
 import 'constants/routes.dart';
 
 void main() {
-  runApp(App(appModel: AppModel(),));
+  runApp(App());
 }
+
 final GlobalKey<NavigatorState> navigatorKey = new GlobalKey<NavigatorState>();
 final RouteObserver<PageRoute> routeObserver = new RouteObserver<PageRoute>();
+
 class App extends StatelessWidget {
-  // This widget is the root of your application.
-  final AppModel appModel;
-
-  const App({@required this.appModel});
-
   @override
   Widget build(BuildContext context) {
-    return ScopedModel<AppModel>(
-      model: appModel,
-      child: ScopedModelDescendant<AppModel>(
-        builder: (context, child, model) {
-          return MaterialApp(
-            debugShowCheckedModeBanner: false,
-            // initialRoute: kIsWeb ? ScreenRoutes.LOGIN_SCREEN : ScreenRoutes.SPLASH_SCREEN,
-            onGenerateRoute: _getRoute,
-            navigatorKey: navigatorKey,
-            navigatorObservers: [routeObserver],
-          );
-        },
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (context) => PopularActorsDataProvider(),
+          child: HomeScreen(),
+        ),
+      ],
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        initialRoute: Routes.HOME_SCREEN,
+        onGenerateRoute: _getRoute,
+        navigatorKey: navigatorKey,
+        navigatorObservers: [routeObserver],
       ),
     );
   }
@@ -40,8 +39,12 @@ class App extends StatelessWidget {
 
 Route _getRoute(RouteSettings settings) {
   switch (settings.name) {
+    case Routes.ACTOR_DETAILS:
+      var args = settings.arguments as Map<String, dynamic>;
+      return _buildRoute(settings, ActorDetailsScreen(id: args['id'] as int));
     default:
       return _buildRoute(settings, HomeScreen());
+
   }
 }
 

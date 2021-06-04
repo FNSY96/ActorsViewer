@@ -9,25 +9,16 @@ class CustomHttp {
 
       String requestPath = ApiConstants.API_VERSION + path;
 
-      try {
-        Uri uri = Uri(
-            scheme: 'https',
-            host: ApiConstants.MOVIE_DATABASE_URL,
-            path: requestPath,
-            queryParameters: params);
-      } catch (e) {
-        print(e.toString());
-      }
       Uri uri = Uri(
           scheme: 'https',
           host: ApiConstants.MOVIE_DATABASE_URL,
           path: requestPath,
           queryParameters: params);
-      print(uri);
+      print("URL: $uri");
       final response = await http.get(uri);
 
       if (response.statusCode == 200) {
-        // print("RESPONSE: ${response.body}");
+        print("RESPONSE: ${response.body}");
         return response.body;
       }
     } catch (error) {

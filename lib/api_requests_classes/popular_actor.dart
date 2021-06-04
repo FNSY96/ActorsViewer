@@ -1,12 +1,32 @@
 import 'dart:convert';
 
-List<PopularActorDetails> popularActorsDetailsFromJson(String encodedJson) {
-  List<dynamic> results = jsonDecode(encodedJson)['results'];
-  return List<PopularActorDetails>.from(
-      results.map((x) => PopularActorDetails.fromJson(x)));
+class DataModel {
+  int totalPages;
+  int totalResults;
+  List<PopularActor> data;
+
+  DataModel({
+    this.totalPages,
+    this.totalResults,
+    this.data,
+  });
+
+  factory DataModel.fromJson(String encodedJson) {
+    Map<String, dynamic> json = jsonDecode(encodedJson);
+    return DataModel(
+      totalResults: json['total_results'],
+      totalPages: json['total_pages'],
+      data: popularActorsFromJson(json['results']),
+    );
+  }
 }
 
-class PopularActorDetails {
+List<PopularActor> popularActorsFromJson(List<dynamic> results) {
+  return List<PopularActor>.from(
+      results.map((x) => PopularActor.fromJson(x)));
+}
+
+class PopularActor {
   String profilePath;
   bool isAdult;
   int id;
@@ -14,7 +34,7 @@ class PopularActorDetails {
   String name;
   double popularity;
 
-  PopularActorDetails(
+  PopularActor(
       {this.profilePath,
       this.isAdult,
       this.id,
@@ -22,8 +42,8 @@ class PopularActorDetails {
       this.name,
       this.popularity});
 
-  factory PopularActorDetails.fromJson(Map<String, dynamic> json) {
-    return PopularActorDetails(
+  factory PopularActor.fromJson(Map<String, dynamic> json) {
+    return PopularActor(
         profilePath: json['profile_path'],
         isAdult: json['adult'],
         id: json['id'],
