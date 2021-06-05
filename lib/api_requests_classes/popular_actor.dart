@@ -27,7 +27,7 @@ List<PopularActor> popularActorsFromJson(List<dynamic> results) {
 }
 
 class PopularActor {
-  String profilePath;
+  String profileImagePath;
   bool isAdult;
   int id;
   List<KnownFor> knownFor;
@@ -35,7 +35,7 @@ class PopularActor {
   double popularity;
 
   PopularActor(
-      {this.profilePath,
+      {this.profileImagePath,
       this.isAdult,
       this.id,
       this.knownFor,
@@ -44,7 +44,7 @@ class PopularActor {
 
   factory PopularActor.fromJson(Map<String, dynamic> json) {
     return PopularActor(
-        profilePath: json['profile_path'],
+        profileImagePath: json['profile_path'],
         isAdult: json['adult'],
         id: json['id'],
         knownFor: knownForFromJson(json['known_for']),

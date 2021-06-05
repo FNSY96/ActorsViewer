@@ -14,20 +14,4 @@ class PopularActorsDataApiRepository {
 
     return DataModel.fromJson(encodedJson);
   }
-
-  getActorDetails(int id) async {
-    String path = '/person/$id';
-    String encodedJson = await CustomHttp.get(path: path, params: {
-      'api_key': ApiConstants.API_KEY,
-      'language': 'en-US',
-    });
-  }
-
-  getActorImages(int id) async {
-    String path = '/person/$id/images';
-    String encodedJson = await CustomHttp.get(path: path, params: {
-      'api_key': ApiConstants.API_KEY,
-      'language': 'en-US',
-    });
-  }
 }

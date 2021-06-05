@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:actors_viewer/constants/api_constants.dart';
 import 'package:http/http.dart' as http;
 
@@ -18,7 +20,7 @@ class CustomHttp {
       final response = await http.get(uri);
 
       if (response.statusCode == 200) {
-        print("RESPONSE: ${response.body}");
+        log("RESPONSE: ${response.body}");
         return response.body;
       }
     } catch (error) {

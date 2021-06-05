@@ -1,6 +1,10 @@
 import 'package:actors_viewer/api_requests_classes/popular_actor.dart';
+import 'package:actors_viewer/constants/api_constants.dart';
+import 'package:actors_viewer/constants/image_resources.dart';
+import 'package:actors_viewer/constants/image_size.dart';
 import 'package:actors_viewer/constants/routes.dart';
 import 'package:actors_viewer/provider/popular_actors_data_provider.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -74,15 +78,47 @@ class PopularActorsListingState extends State<PopularActorsListingWidget> {
 
   Widget _buildRow(PopularActor details) {
     return GestureDetector(
-      // child: ListTile(title: new Text(details.name)),
       child: Padding(
-        padding: const EdgeInsets.only(left: 20, right: 20, top: 10),
-        child: Text(
-          details.name,
-          style: TextStyle(
-            fontSize: 25,
-            fontWeight: FontWeight.bold,
-          ),
+        padding: const EdgeInsets.all(8.0),
+        child: Row(
+          children: [
+            ClipOval(
+              child: details.profileImagePath != null
+                  ? CachedNetworkImage(
+                      fit: BoxFit.cover,
+                      width: 100,
+                      height: 100,
+                      imageUrl: ApiConstants.IMAGES_BASE_URL +
+                          ImageSize.width300 +
+                          details.profileImagePath,
+                      placeholder: (context, url) =>
+                          new CircularProgressIndicator(),
+                      errorWidget: (context, url, error) =>
+                          Image.asset(ImageResources.personPlaceHolder),
+                    )
+                  : Container(
+                      width: 100,
+                      height: 100,
+                      decoration: BoxDecoration(
+                          image: DecorationImage(
+                              fit: BoxFit.cover,
+                              image: AssetImage(
+                                  ImageResources.personPlaceHolder))),
+                    ),
+            ),
+            SizedBox(
+              width: 15,
+            ),
+            Expanded(
+              child: Text(
+                details.name,
+                style: TextStyle(
+                  fontSize: 25,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+          ],
         ),
       ),
       onTap: () {
