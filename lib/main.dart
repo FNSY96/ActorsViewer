@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:actors_viewer/provider/popular_actors_data_provider.dart';
 import 'package:actors_viewer/screens/actor_details/actor_details_screen.dart';
+import 'package:actors_viewer/screens/actor_image_viewer/actor_image_viewer.dart';
 import 'package:actors_viewer/screens/home_screen/home_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -39,6 +40,9 @@ class App extends StatelessWidget {
 
 Route _getRoute(RouteSettings settings) {
   switch (settings.name) {
+    case Routes.ACTOR_IMAGE_VIEWER:
+      var args = settings.arguments as Map<String, dynamic>;
+      return _buildRoute(settings, ActorImageViewer(imagePath: args['imagePath'] as String));
     case Routes.ACTOR_DETAILS:
       var args = settings.arguments as Map<String, dynamic>;
       return _buildRoute(settings, ActorDetailsScreen(id: args['id'] as int));

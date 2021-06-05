@@ -3,6 +3,7 @@ import 'package:actors_viewer/common_widgets/long_text_viewer.dart';
 import 'package:actors_viewer/common_widgets/network_image.dart';
 import 'package:actors_viewer/constants/api_constants.dart';
 import 'package:actors_viewer/constants/image_size.dart';
+import 'package:actors_viewer/constants/routes.dart';
 import 'package:actors_viewer/provider/actor_details_data_provider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -106,11 +107,16 @@ class ActorDetailsState extends State<ActorDetailsScreen> {
                         if (snapshot.hasData) {
                           return GridView.count(
                             crossAxisCount: 3,
-                            children: List.generate(snapshot.data.length, (index) {
+                            children:
+                                List.generate(snapshot.data.length, (index) {
                               ActorImage actorImage = snapshot.data[index];
                               return GestureDetector(
                                 onTap: () {
-                                  print(actorImage.imagePath);
+                                  Navigator.of(context).pushNamed(
+                                      Routes.ACTOR_IMAGE_VIEWER,
+                                      arguments: {
+                                        "imagePath": actorImage.imagePath
+                                      });
                                 },
                                 child: Container(
                                   child: getCachedNetworkImage(
