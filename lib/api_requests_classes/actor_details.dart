@@ -30,14 +30,14 @@ class ActorDetails {
     Map<String, dynamic> json = jsonDecode(encodedJson);
     return ActorDetails(
       id: json['id'],
-      name: json['name'],
+      name: json['name'] ?? '',
       isAdult: json['adult'],
-      biography: json['biography'],
-      birthday: json['birthday'],
+      biography: json['biography'] ?? '',
+      birthday: json['birthday'] ?? '',
       deathday: json['deathday'],
       gender: json['gender'],
       knownForDepartment: json['known_for_department'],
-      placeOfBirth: json['place_of_birth'],
+      placeOfBirth: json['place_of_birth'] ?? '',
       popularity: json['popularity'],
       profileImagePath: json['profile_path'],
     );
@@ -61,7 +61,7 @@ class ActorImage {
   factory ActorImage.fromJson(Map<String, dynamic> json) {
     return ActorImage(
         aspectRatio: json['aspect_ratio'],
-        imagePath: json['file_path'],
+        imagePath: json['file_path'] ?? '',
         width: json['width'],
         height: json['height']);
   }

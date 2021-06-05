@@ -3,12 +3,10 @@ import 'package:flutter/material.dart';
 class LongTextViewerWidget extends StatefulWidget {
   final String text;
   int visibleTextLength;
-  TextStyle style;
+  TextStyle style = TextStyle(fontSize: 25, fontWeight: FontWeight.bold);
 
   LongTextViewerWidget(
-      {@required this.text, this.style, this.visibleTextLength = 100}) {
-    style = TextStyle(fontSize: 25, fontWeight: FontWeight.bold);
-  }
+      {@required this.text, this.style, this.visibleTextLength = 100});
 
   @override
   _LongTextViewerWidgetState createState() => _LongTextViewerWidgetState();

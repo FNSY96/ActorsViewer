@@ -44,11 +44,11 @@ class PopularActor {
 
   factory PopularActor.fromJson(Map<String, dynamic> json) {
     return PopularActor(
-        profileImagePath: json['profile_path'],
+        profileImagePath: json['profile_path'] ?? '',
         isAdult: json['adult'],
         id: json['id'],
         knownFor: knownForFromJson(json['known_for']),
-        name: json['name'],
+        name: json['name'] ?? '',
         popularity: json['popularity']);
   }
 }
