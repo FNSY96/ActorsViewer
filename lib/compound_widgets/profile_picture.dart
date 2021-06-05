@@ -1,6 +1,5 @@
-import 'package:actors_viewer/constants/api_constants.dart';
 import 'package:actors_viewer/constants/image_resources.dart';
-import 'package:actors_viewer/constants/image_size.dart';
+import 'package:actors_viewer/utils/utils.dart';
 import 'package:flutter/material.dart';
 
 import 'network_image.dart';
@@ -12,9 +11,7 @@ Widget getProfilePicture(
         ? getCachedNetworkImage(
             width: width,
             height: height,
-            imageUrl: ApiConstants.IMAGES_BASE_URL +
-                ImageSize.width300 +
-                profileImagePath)
+            imageUrl: Utils.getActorImageWidth300Url(profileImagePath))
         : Container(
             width: width,
             height: height,

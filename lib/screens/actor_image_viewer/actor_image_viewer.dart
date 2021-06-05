@@ -1,6 +1,6 @@
 import 'package:actors_viewer/compound_widgets/network_image.dart';
-import 'package:actors_viewer/constants/api_constants.dart';
-import 'package:actors_viewer/constants/image_size.dart';
+import 'package:actors_viewer/constants/application_messages.dart';
+import 'package:actors_viewer/utils/utils.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -22,28 +22,26 @@ class ActorImageViewer extends StatelessWidget {
               context: context,
               builder: (BuildContext context) {
                 return AlertDialog(
-                  title: new Text("Do you want to save this image to your local storage?"),
-                  // content: new Text("Alert Dialog body"),
+                  title: new Text(ApplicationMessages.savingQuestion),
                   actions: <Widget>[
-                    // usually buttons at the bottom of the dialog
                     new FlatButton(
-                      child: new Text("Save"),
+                      child: new Text(ApplicationMessages.save),
                       onPressed: () async {
                         try {
                           await ImageDownloader.downloadImage(
-                              ApiConstants.IMAGES_BASE_URL +
-                                  ImageSize.original +
-                                  imagePath);
-                          Fluttertoast.showToast(msg: "Image Saved Successfully");
-
+                              Utils.getActorImageOriginalUrl(imagePath));
+                          Fluttertoast.showToast(
+                              msg: ApplicationMessages.imageSavedSuccessfully);
                         } catch (e) {
-                          Fluttertoast.showToast(msg: "Something Wrong Happened!");
+                          Fluttertoast.showToast(
+                              msg: ApplicationMessages.somethingWrongHappened);
                         }
+                        Navigator.of(context).pop();
                         Navigator.of(context).pop();
                       },
                     ),
                     new FlatButton(
-                      child: new Text("Close"),
+                      child: new Text(ApplicationMessages.close),
                       onPressed: () {
                         Navigator.of(context).pop();
                       },
@@ -56,9 +54,7 @@ class ActorImageViewer extends StatelessWidget {
           child: getCachedNetworkImage(
               width: double.infinity,
               height: double.infinity,
-              imageUrl: ApiConstants.IMAGES_BASE_URL +
-                  ImageSize.original +
-                  imagePath),
+              imageUrl: Utils.getActorImageOriginalUrl(imagePath)),
         ),
       ),
     );

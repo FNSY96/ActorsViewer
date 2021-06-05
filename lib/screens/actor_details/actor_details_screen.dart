@@ -2,10 +2,9 @@ import 'package:actors_viewer/api_requests_classes/actor_details.dart';
 import 'package:actors_viewer/compound_widgets/long_text_viewer.dart';
 import 'package:actors_viewer/compound_widgets/network_image.dart';
 import 'package:actors_viewer/compound_widgets/profile_picture.dart';
-import 'package:actors_viewer/constants/api_constants.dart';
-import 'package:actors_viewer/constants/image_size.dart';
 import 'package:actors_viewer/constants/routes.dart';
 import 'package:actors_viewer/provider/actor_details_data_provider.dart';
+import 'package:actors_viewer/utils/utils.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -114,9 +113,8 @@ class ActorDetailsScreen extends StatelessWidget {
                   },
                   child: Container(
                     child: getCachedNetworkImage(
-                        imageUrl: ApiConstants.IMAGES_BASE_URL +
-                            ImageSize.original +
-                            actorImage.imagePath),
+                        imageUrl: Utils.getActorImageOriginalUrl(
+                            actorImage.imagePath)),
                   ),
                 );
               }),
