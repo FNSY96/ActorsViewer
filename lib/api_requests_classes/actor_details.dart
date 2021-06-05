@@ -10,7 +10,7 @@ class ActorDetails {
   String knownForDepartment;
   String placeOfBirth;
   double popularity;
-  String profilePath;
+  String profileImagePath;
   String name;
 
   ActorDetails(
@@ -23,7 +23,7 @@ class ActorDetails {
       this.knownForDepartment,
       this.placeOfBirth,
       this.popularity,
-      this.profilePath,
+      this.profileImagePath,
       this.name});
 
   factory ActorDetails.fromJson(String encodedJson) {
@@ -39,7 +39,30 @@ class ActorDetails {
       knownForDepartment: json['known_for_department'],
       placeOfBirth: json['place_of_birth'],
       popularity: json['popularity'],
-      profilePath: json['profile_path'],
+      profileImagePath: json['profile_path'],
     );
+  }
+}
+
+List<ActorImage> actorImagesFromJson(String encodedJson) {
+  Map<String, dynamic> json = jsonDecode(encodedJson);
+  List<dynamic> profiles = json['profiles'];
+  return List<ActorImage>.from(profiles.map((x) => ActorImage.fromJson(x)));
+}
+
+class ActorImage {
+  double aspectRatio;
+  String imagePath;
+  int width;
+  int height;
+
+  ActorImage({this.aspectRatio, this.imagePath, this.width, this.height});
+
+  factory ActorImage.fromJson(Map<String, dynamic> json) {
+    return ActorImage(
+        aspectRatio: json['aspect_ratio'],
+        imagePath: json['file_path'],
+        width: json['width'],
+        height: json['height']);
   }
 }
