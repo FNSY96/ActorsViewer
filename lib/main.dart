@@ -5,6 +5,7 @@ import 'package:actors_viewer/screens/actor_details/actor_details_screen.dart';
 import 'package:actors_viewer/screens/actor_image_viewer/actor_image_viewer.dart';
 import 'package:actors_viewer/screens/home_screen/home_screen.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -53,7 +54,7 @@ Route _getRoute(RouteSettings settings) {
 }
 
 _buildRoute(RouteSettings settings, Widget page) {
-  return Platform.isAndroid
+  return kIsWeb || Platform.isAndroid
       ? PageRouteBuilder(
           settings: settings,
           pageBuilder: (BuildContext context, _, __) => page,

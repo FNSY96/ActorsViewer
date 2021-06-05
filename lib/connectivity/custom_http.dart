@@ -20,7 +20,6 @@ class CustomHttp {
       final response = await http.get(uri);
 
       if (response.statusCode == 200) {
-        log("RESPONSE: ${response.body}");
         return response.body;
       }
     } catch (error) {
