@@ -1,16 +1,7 @@
 # actors_viewer
 
-A new Flutter application.
+Based on the themoviedb.org api (https://developers.themoviedb.org/3)
 
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- Displaying a list of popular people (actors, directors ..etc) with infinite scrolling.
+- When a person entry is selected, a Details view is opened with the basic person info and grid view of his/her images.
+- When an image is selected, it’s opened in its original size in a new screen where the user can save the image locally on the phone.
